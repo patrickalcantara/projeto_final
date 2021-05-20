@@ -1,0 +1,108 @@
+* {
+  font-size: 14px;
+}
+
+.logo-login {
+  margin-bottom: 20px;
+  width: 180px;
+}
+
+.link {
+  font-size: 12px;
+  color: #999;
+}
+
+a:hover.link {
+  text-decoration: none;
+  color: #333;
+}
+
+.button-login {
+  font-weight: bold;
+  color: #f8f1f1;
+  font-size: 12px;
+  padding: 10px 30px;
+  background-color: #db6400;
+  border-radius: 1.25rem;
+  border: 0;
+}
+
+.button-login:hover {
+  color: #f8f1f1;
+  background-color: #ffa62b;
+}
+
+.button-add {
+  font-weight: bold;
+  color: #f8f1f1;
+  font-size: 12px;
+  padding: 10px 30px;
+  background-color: #db6400;
+  border-radius: 1.25rem;
+  border: 0;
+  margin: 10px 0;
+}
+
+.button-add:hover {
+  color: #f8f1f1;
+  background-color: #ffa62b;
+}
+
+.button-cancel {
+  font-weight: bold;
+  color: #f8f1f1;
+  font-size: 12px;
+  padding: 10px 30px;
+  background-color: #666;
+  border-radius: 1.25rem;
+  border: 0;
+  margin: 0 10px;
+}
+
+.button-cancel:hover {
+  color: #f8f1f1;
+  background-color: #888;
+}
+
+div.top-menu {
+  margin-top: 20px;
+  color: #ccc;
+}
+
+div.top-menu p {
+  margin-top: 6px;
+}
+
+div.top-menu a {
+  color: #fff !important;
+}
+
+div.top-menu a:hover {
+  color: #ccc !important;
+}
+
+div.top-menu > div > div > a {
+  color: #333 !important;
+}
+
+div.top-menu > div > div > a:hover {
+  color: #888 !important;
+}
+
+.tituloDashboard {
+  font-weight: bold;
+  color: #db6400;
+}
+
+.icon-button {
+  width: 15px;
+  height: 15px;
+  margin: 0 5px 0 0;
+}
+
+.icon-comands {
+  margin: 0 10px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
