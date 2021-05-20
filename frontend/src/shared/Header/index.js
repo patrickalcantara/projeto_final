@@ -35,7 +35,7 @@ function MainMenu({ history }) {
             <NavDropdown title="CADASTROS">
               <Nav.Link href="/pessoas">PESSOAS</Nav.Link>
               <Nav.Link href="/usuarios">USUÁRIOS</Nav.Link>
-              <Nav.Link>CATEGORIAS</Nav.Link>
+              <Nav.Link href="/categorias">CATEGORIAS</Nav.Link>
             </NavDropdown>{" "}
             <p>|</p>
             <Nav.Link>LANÇAMENTOS</Nav.Link>

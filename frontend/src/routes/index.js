@@ -14,6 +14,8 @@ import UsuariosListPage from "./../pages/secure/Usuarios/UsuariosList/index";
 import UsuariosAddPage from "./../pages/secure/Usuarios/UsuariosAdd/index";
 import UsuariosEditPage from "./../pages/secure/Usuarios/UsuariosEdit/index";
 
+import CategoriasListPage from "./../pages/secure/Categorias/CategoriasList/index";
+
 import RoutePrivate from "./route-wrapper";
 
 export default function Routes() {
@@ -42,6 +44,8 @@ export default function Routes() {
           path="/usuarios/edit/:usuarioId"
           component={UsuariosEditPage}
         />
+
+        <RoutePrivate exact path="/categorias" component={CategoriasListPage} />
 
         <Route exact path="/Login" component={Login} />
       </Switch>
