@@ -11,6 +11,42 @@ import { useEffect, useState } from "react";
 
 import CategoriaService from "../../../../services/categorias";
 
+export default function CategoriasList() {
+  const [categorias, setCategorias] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function getItens() {
+      const service = new CategoriaService();
+      const result = await service.getAll();
+
+      setCategorias(result);
+      setLoading(false);
+    }
+    getItens();
+  }, []);
+
+  return (
+    <>
+      <Header />
+      <PageContent>
+        <Container>
+          <Row>
+            <Col>
+              <Link className="btn btn-warning button-add" to="categorias/add">
+                <img src={iconAdd} alt="Adicionar" className="icon-button" />
+                NOVO
+              </Link>
+            </Col>
+          </Row>
+          <Row>{!loading && <RenderTable registros={categorias} />}</Row>
+        </Container>
+      </PageContent>
+      <Footer />
+    </>
+  );
+}
+
 function RenderTable({ registros }) {
   return (
     <Table bordered hover>
@@ -56,41 +92,5 @@ function RenderEmptyLine() {
     <tr>
       <td colSpan="3">Nenhum registro encontrado.</td>
     </tr>
-  );
-}
-
-export default function CategoriasList() {
-  const [categorias, setCategorias] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function getItens() {
-      const service = new CategoriaService();
-      const result = await service.getAll();
-
-      setCategorias(result);
-      setLoading(false);
-    }
-    getItens();
-  }, []);
-
-  return (
-    <>
-      <Header />
-      <PageContent>
-        <Container>
-          <Row>
-            <Col>
-              <Link className="btn btn-warning button-add" to="categorias/add">
-                <img src={iconAdd} alt="Adicionar" className="icon-button" />
-                NOVO
-              </Link>
-            </Col>
-          </Row>
-          <Row>{!loading && <RenderTable registros={categorias} />}</Row>
-        </Container>
-      </PageContent>
-      <Footer />
-    </>
   );
 }
