@@ -16,6 +16,12 @@ import UsuariosEditPage from "./../pages/secure/Usuarios/UsuariosEdit/index";
 
 import CategoriasListPage from "./../pages/secure/Categorias/CategoriasList/index";
 import CategoriasAddPage from "./../pages/secure/Categorias/CategoriasAdd/index";
+import CategoriasEditPage from "./../pages/secure/Categorias/CategoriasEdit/index";
+
+import LancamentosListPage from "./../pages/secure/Lancamentos/LancamentosList/index";
+import LancamentosAddPage from "./../pages/secure/Lancamentos/LancamentosAdd/index";
+import LancamentosEditPage from "./../pages/secure/Lancamentos/LancamentosEdit/index";
+import LancamentosDetailsPage from "./../pages/secure/Lancamentos/LancamentosDetails/index";
 
 import RoutePrivate from "./route-wrapper";
 
@@ -51,6 +57,32 @@ export default function Routes() {
           exact
           path="/categorias/add"
           component={CategoriasAddPage}
+        />
+        <RoutePrivate
+          exact
+          path="/categorias/edit/:categoriaId"
+          component={CategoriasEditPage}
+        />
+
+        <RoutePrivate
+          exact
+          path="/lancamentos"
+          component={LancamentosListPage}
+        />
+        <RoutePrivate
+          exact
+          path="/lancamentos/add"
+          component={LancamentosAddPage}
+        />
+        <RoutePrivate
+          exact
+          path="/lancamentos/edit/:categoriaId"
+          component={LancamentosEditPage}
+        />
+        <RoutePrivate
+          exact
+          path="/lancamentos/details/:categoriaId"
+          component={LancamentosDetailsPage}
         />
 
         <Route exact path="/Login" component={Login} />

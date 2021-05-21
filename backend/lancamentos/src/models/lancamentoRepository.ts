@@ -1,8 +1,22 @@
 import lancamentoRepository, { ILancamentoModel } from "./lancamentoModel";
+import { QueryTypes } from "sequelize";
 import { ILancamento } from "./lancamento";
+import Categoria from "./categoriaModel";
+import sequelize from "sc-commons/data/db";
 
 function findAll() {
-  return lancamentoRepository.findAll<ILancamentoModel>();
+  const lancamentos = sequelize.query(
+    `SELECT lancamentos.*, categoria.nome AS categoria_nome, pessoas.nome AS pessoa_nome  
+    FROM lancamentos  
+    JOIN pessoas ON lancamentos.pessoaId = pessoas.id
+    JOIN categoria ON lancamentos.categoriaId = categoria.id;`,
+    { type: QueryTypes.SELECT }
+  );
+  return lancamentos;
+
+  // return lancamentoRepository.findAll<ILancamentoModel>({
+  //   include: Categoria,
+  // });
 }
 
 function findById(id: number) {

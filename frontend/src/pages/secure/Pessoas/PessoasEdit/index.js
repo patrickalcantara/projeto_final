@@ -84,21 +84,25 @@ class PessoasEdit extends React.Component {
   };
 
   async componentDidMount() {
-    const result = await this.service.getOne(this.pessoaId);
+    try {
+      const result = await this.service.getOne(this.pessoaId);
 
-    this.setState({
-      nome: result.nome,
-      email: result.email,
-      ativo: result.ativo,
-      logradouro: result.logradouro,
-      numero: result.numero,
-      complemento: result.complemento,
-      bairro: result.bairro,
-      cep: result.cep,
-      cidade: result.cidade,
-      uf: result.uf,
-      isLoading: false,
-    });
+      this.setState({
+        nome: result.nome,
+        email: result.email,
+        ativo: result.ativo,
+        logradouro: result.logradouro,
+        numero: result.numero,
+        complemento: result.complemento,
+        bairro: result.bairro,
+        cep: result.cep,
+        cidade: result.cidade,
+        uf: result.uf,
+        isLoading: false,
+      });
+    } catch (error) {
+      this.props.history.push("/pessoas");
+    }
   }
 
   render() {

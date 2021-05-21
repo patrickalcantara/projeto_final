@@ -7,7 +7,7 @@ import { PageContent } from "../../../../shared/styles";
 
 import iconAdd from "../../../../assets/icon-plus-circle.png";
 import iconEdit from "../../../../assets/icon-edit.png";
-import iconDetails from "../../../../assets/icon-details.png";
+
 import UsuariosService from "../../../../services/usuarios";
 
 class UsuariosList extends React.Component {
@@ -50,9 +50,6 @@ class UsuariosList extends React.Component {
         <td style={{ textAlign: "center" }}>
           <Link to={`${url}/edit/${registro.id}`}>
             <img src={iconEdit} alt="Editar" className="icon-comands" />
-          </Link>
-          <Link to={`${url}/details/${registro.id}`}>
-            <img src={iconDetails} alt="Detalhes" className="icon-comands" />
           </Link>
         </td>
       </tr>

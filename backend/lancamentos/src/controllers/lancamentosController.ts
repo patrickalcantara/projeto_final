@@ -3,7 +3,7 @@ import { ILancamento } from "../models/lancamento";
 import repository from "../models/lancamentoRepository";
 
 async function getLancamentos(req: Request, res: Response, next: any) {
-  const lancamentos: ILancamento[] = await repository.findAll();
+  const lancamentos = await repository.findAll();
   return res.status(200).json(lancamentos);
 }
 

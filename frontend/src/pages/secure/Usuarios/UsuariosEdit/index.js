@@ -68,13 +68,13 @@ class UsuariosEdit extends React.Component {
       });
     } catch (error) {
       if (error.status === 403) {
-        window.location = "/usuarios";
+        this.props.history.push("/usuarios");
       }
     }
   }
 
   render() {
-    const { error } = this.state;
+    const { error, isLoading } = this.state;
 
     return (
       <>
@@ -82,53 +82,59 @@ class UsuariosEdit extends React.Component {
         <PageContent>
           <Container>
             {error && this.renderError()}
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Row>
-                <Col>
-                  <Form.Group>
-                    <Form.Label>NOME:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Informe um nome de usuário"
-                      onChange={(e) => this.setState({ nome: e.target.value })}
-                      value={this.state.nome}
-                    />
-                  </Form.Group>
-                </Col>
-              </Form.Row>
-              <Form.Row>
-                <Col>
-                  <Form.Group>
-                    <Form.Label>SENHA:</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Informe uma senha"
-                      onChange={(e) => this.setState({ senha: e.target.value })}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group>
-                    <Form.Label>CONFIRME A SENHA:</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Confirme sua senha"
-                      onChange={(e) =>
-                        this.setState({ confirmaSenha: e.target.value })
-                      }
-                    />
-                  </Form.Group>
-                </Col>
-              </Form.Row>
-              <Form.Row>
-                <Button className="button-login" type="submit">
-                  SALVAR
-                </Button>
-                <Link className="btn button-cancel" to="/usuarios">
-                  CANCELAR
-                </Link>
-              </Form.Row>
-            </Form>
+            {!isLoading && (
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Row>
+                  <Col>
+                    <Form.Group>
+                      <Form.Label>NOME:</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Informe um nome de usuário"
+                        onChange={(e) =>
+                          this.setState({ nome: e.target.value })
+                        }
+                        value={this.state.nome}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Form.Row>
+                <Form.Row>
+                  <Col>
+                    <Form.Group>
+                      <Form.Label>SENHA:</Form.Label>
+                      <Form.Control
+                        type="password"
+                        placeholder="Informe uma senha"
+                        onChange={(e) =>
+                          this.setState({ senha: e.target.value })
+                        }
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group>
+                      <Form.Label>CONFIRME A SENHA:</Form.Label>
+                      <Form.Control
+                        type="password"
+                        placeholder="Confirme sua senha"
+                        onChange={(e) =>
+                          this.setState({ confirmaSenha: e.target.value })
+                        }
+                      />
+                    </Form.Group>
+                  </Col>
+                </Form.Row>
+                <Form.Row>
+                  <Button className="button-login" type="submit">
+                    SALVAR
+                  </Button>
+                  <Link className="btn button-cancel" to="/usuarios">
+                    CANCELAR
+                  </Link>
+                </Form.Row>
+              </Form>
+            )}
           </Container>
         </PageContent>
         <Footer />

@@ -2,7 +2,11 @@ import categoriaRepository, { ICategoriaModel } from "./categoriaModel";
 import { ICategoria } from "./categoria";
 
 function findAll() {
-  return categoriaRepository.findAll<ICategoriaModel>();
+  return categoriaRepository.findAll<ICategoriaModel>({
+    where: {
+      ativo: true,
+    },
+  });
 }
 
 function findById(id: number) {
