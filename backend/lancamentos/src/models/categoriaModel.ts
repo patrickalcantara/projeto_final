@@ -26,6 +26,10 @@ const Categoria = database.define<ICategoriaModel>("categoria", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  ativo: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true,
+  },
 });
 
 Categoria.hasMany(Lancamento, {

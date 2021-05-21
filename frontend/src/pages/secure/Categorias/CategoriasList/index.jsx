@@ -6,7 +6,7 @@ import { PageContent } from "../../../../shared/styles";
 
 import iconAdd from "../../../../assets/icon-plus-circle.png";
 import iconEdit from "../../../../assets/icon-edit.png";
-import iconDetails from "../../../../assets/icon-details.png";
+import iconDelete from "../../../../assets/icon-delete.png";
 import { useEffect, useState } from "react";
 
 import CategoriaService from "../../../../services/categorias";
@@ -48,6 +48,10 @@ export default function CategoriasList() {
 }
 
 function RenderTable({ registros }) {
+  const ativos = registros.filter((item) => {
+    return item.ativo === true;
+  });
+
   return (
     <Table bordered hover>
       <thead>
@@ -58,8 +62,8 @@ function RenderTable({ registros }) {
         </tr>
       </thead>
       <tbody>
-        {registros.length !== 0 ? (
-          registros.map((item) => <RenderLine key={item.id} registro={item} />)
+        {ativos.length !== 0 ? (
+          ativos.map((item) => <RenderLine key={item.id} registro={item} />)
         ) : (
           <RenderEmptyLine />
         )}
@@ -76,12 +80,18 @@ function RenderLine({ registro }) {
       <td>{registro.nome}</td>
       <td>{registro.descricao}</td>
       <td style={{ textAlign: "center" }}>
-        <Link to={`${url}/edit/${registro.id}`}>
+        <Link to={`${url}/edit/${registro.id}`} alt="Editar categoria">
           <img src={iconEdit} alt="Editar" className="icon-comands" />
         </Link>
-        <Link to={`${url}/details/${registro.id}`}>
-          <img src={iconDetails} alt="Detalhes" className="icon-comands" />
-        </Link>
+
+        <img
+          src={iconDelete}
+          alt="Detalhes"
+          className="icon-comands"
+          onClick={() => {
+            deleteRegistro(registro);
+          }}
+        />
       </td>
     </tr>
   );
@@ -93,4 +103,17 @@ function RenderEmptyLine() {
       <td colSpan="3">Nenhum registro encontrado.</td>
     </tr>
   );
+}
+
+async function deleteRegistro(registro) {
+  const resposta = window.confirm("Deseja desativar este registro?");
+  if (resposta) {
+    try {
+      const service = new CategoriaService();
+      await service.delete(registro.id);
+      document.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

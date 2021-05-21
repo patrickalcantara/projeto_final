@@ -47,9 +47,22 @@ async function updateCategoria(req: Request, res: Response, next: any) {
   }
 }
 
+async function deleteCategoria(req: Request, res: Response, next: any) {
+  try {
+    const id = parseInt(req.params.id);
+    if (!id) return res.status(400).end();
+    const originalCategoria = await repository.softDeleteById(id);
+
+    return res.status(200).json(originalCategoria);
+  } catch (error) {
+    res.status(400).end();
+  }
+}
+
 export default {
   getCategorias,
   getCategoria,
   addCategoria,
   updateCategoria,
+  deleteCategoria,
 };

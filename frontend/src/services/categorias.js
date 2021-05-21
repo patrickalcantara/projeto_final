@@ -31,6 +31,11 @@ class CategoriaService {
 
     return result;
   }
+
+  async delete(id) {
+    const result = await this.api.delete(`categorias/${id}`);
+    return result;
+  }
 }
 
 export default CategoriaService;

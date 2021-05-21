@@ -17,6 +17,17 @@ function deleteById(id: number) {
   return categoriaRepository.destroy({ where: { id: id } });
 }
 
+async function softDeleteById(id: number) {
+  const originalCategoria = await categoriaRepository.findByPk<ICategoriaModel>(
+    id
+  );
+  if (!originalCategoria) return null;
+  originalCategoria.ativo = false;
+
+  await originalCategoria.save();
+  return originalCategoria;
+}
+
 async function set(id: number, categoria: ICategoria) {
   const originalCategoria = await categoriaRepository.findByPk<ICategoriaModel>(
     id
@@ -29,4 +40,4 @@ async function set(id: number, categoria: ICategoria) {
   return originalCategoria;
 }
 
-export default { findAll, add, deleteById, findById, set };
+export default { findAll, add, deleteById, findById, set, softDeleteById };

@@ -63,4 +63,10 @@ router.patch(
   categoriasController.updateCategoria
 );
 
+router.delete(
+  "/categorias/:id",
+  middlewareCommons.validateAuth,
+  categoriasController.deleteCategoria
+);
+
 export default router;
