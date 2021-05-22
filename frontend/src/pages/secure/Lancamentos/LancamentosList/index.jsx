@@ -35,7 +35,7 @@ export default function LancamentosList() {
         <Container>
           <Row>
             <Col>
-              <Link className="btn btn-warning button-add" to="">
+              <Link className="btn btn-warning button-add" to="lancamentos/add">
                 <img src={iconAdd} alt="Adicionar" className="icon-button" />
                 NOVO
               </Link>
@@ -55,9 +55,9 @@ function RenderTable({ registros }) {
       <thead>
         <tr>
           <th>RESPONSÁVEL</th>
-          <th>DATA PAGAMENTO</th>
-          <th>VALOR</th>
-          <th>TIPO LANÇAMENTO</th>
+          <th style={{ textAlign: "center" }}>DATA PAGAMENTO</th>
+          <th style={{ textAlign: "center" }}>VALOR</th>
+          <th style={{ textAlign: "center" }}>TIPO LANÇAMENTO</th>
           <th style={{ textAlign: "center", width: "12%" }}>AÇÕES</th>
         </tr>
       </thead>
@@ -83,22 +83,39 @@ function RenderEmptyLine() {
 function RenderLine({ registro }) {
   const { url } = useRouteMatch();
 
+  const valorFormatado = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+  }).format(registro.valor);
+
+  const dataFormatada = new Intl.DateTimeFormat("pt-BR", {
+    timeZone: "UTC",
+  }).format(new Date(registro.dataPagamento));
+
   return (
     <tr key={registro.id}>
       <td>{registro.pessoa_nome}</td>
-      <td>{registro.dataPagamento}</td>
-      <td>{registro.valor}</td>
-      <td>{registro.tipo}</td>
+      <td style={{ textAlign: "center" }}>{dataFormatada}</td>
+      <td style={{ textAlign: "center" }}>{valorFormatado}</td>
       <td style={{ textAlign: "center" }}>
-        <Link to={`${url}/edit/${registro.id}`} alt="Editar categoria">
+        <RenderHighLight tipo={registro.tipo} />
+      </td>
+      <td style={{ textAlign: "center" }}>
+        <Link
+          to={`${url}/edit/${registro.id}`}
+          alt="Editar categoria"
+          title="Editar"
+        >
           <img src={iconEdit} alt="Editar" className="icon-comands" />
         </Link>
 
-        <Link to={`${url}/details/${registro.id}`}>
+        <Link to={`${url}/details/${registro.id}`} title="Detalhes">
           <img src={iconDetails} alt="Detalhes" className="icon-comands" />
         </Link>
 
         <img
+          title="Deletar"
           src={iconDelete}
           alt="Deletar"
           className="icon-comands"
@@ -111,6 +128,15 @@ function RenderLine({ registro }) {
   );
 }
 
+function RenderHighLight({ tipo }) {
+  return tipo === 100 ? (
+    <label className="tipoLancamento receita">RECEITA</label>
+  ) : (
+    <label className="tipoLancamento despesa">DESPESA</label>
+  );
+}
+
+//TODO: Implementar o delete de lancamentos
 async function deleteRegistro(registro) {
   // const resposta = window.confirm("Deseja desativar este registro?");
   // if (resposta) {

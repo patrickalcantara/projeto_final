@@ -9,7 +9,7 @@ const lancamentoSchema = Joi.object({
   dataPagamento: Joi.date().required(),
   dataVencimento: Joi.date().required(),
   valor: Joi.number().required(),
-  observacoes: Joi.string(),
+  observacoes: Joi.string().allow(null, ""),
 });
 
 export { lancamentoSchema };

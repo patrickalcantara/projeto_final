@@ -20,7 +20,9 @@ function findAll() {
 }
 
 function findById(id: number) {
-  return lancamentoRepository.findByPk<ILancamentoModel>(id);
+  return lancamentoRepository.findByPk<ILancamentoModel>(id, {
+    include: Categoria,
+  });
 }
 
 function add(lancamento: ILancamento) {
@@ -45,8 +47,8 @@ async function set(id: number, lancamento: ILancamento) {
   if (lancamento.dataPagamento)
     originalLancamento.dataPagamento = lancamento.dataPagamento;
   if (lancamento.valor) originalLancamento.valor = lancamento.valor;
-  if (lancamento.observacoes)
-    originalLancamento.observacoes = lancamento.observacoes;
+
+  originalLancamento.observacoes = lancamento.observacoes;
 
   await originalLancamento.save();
   return originalLancamento;

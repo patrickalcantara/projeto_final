@@ -76,12 +76,12 @@ export default function Routes() {
         />
         <RoutePrivate
           exact
-          path="/lancamentos/edit/:categoriaId"
+          path="/lancamentos/edit/:lancamentoId"
           component={LancamentosEditPage}
         />
         <RoutePrivate
           exact
-          path="/lancamentos/details/:categoriaId"
+          path="/lancamentos/details/:lancamentoId"
           component={LancamentosDetailsPage}
         />
 

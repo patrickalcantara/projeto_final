@@ -25,7 +25,7 @@ async function set(id: number, pessoa: IPessoa) {
   originalPessoa.ativo = pessoa.ativo;
   if (pessoa.logradouro) originalPessoa.logradouro = pessoa.logradouro;
   if (pessoa.numero) originalPessoa.numero = pessoa.numero;
-  if (pessoa.complemento) originalPessoa.complemento = pessoa.complemento;
+  originalPessoa.complemento = pessoa.complemento;
   if (pessoa.bairro) originalPessoa.bairro = pessoa.bairro;
   if (pessoa.cep) originalPessoa.cep = pessoa.cep;
   if (pessoa.cidade) originalPessoa.cidade = pessoa.cidade;
