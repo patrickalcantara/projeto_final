@@ -152,3 +152,7 @@ div.top-menu > div > div > a:hover {
   background-color: #fff !important;
   background-clip: padding-box !important;
 }
+
+.recharts-legend-wrapper {
+  bottom: 5px !important;
+}

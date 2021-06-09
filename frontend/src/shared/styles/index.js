@@ -38,6 +38,6 @@ export const PageContentDashboard = styled.div`
 `;
 
 export const PageContent = styled.div`
-  padding: 30px 0;
+  padding: 20px 0;
   min-height: 456px;
 `;
