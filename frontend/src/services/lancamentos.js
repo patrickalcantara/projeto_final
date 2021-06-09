@@ -36,6 +36,11 @@ class LancamentosService {
     const result = await this.api.delete(`lancamentos/${id}`);
     return result;
   }
+
+  async getGrafico(ano) {
+    const result = await this.api.get(`graficos/${ano}`);
+    return result.data;
+  }
 }
 
 export default LancamentosService;

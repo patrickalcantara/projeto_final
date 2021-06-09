@@ -9,7 +9,8 @@ function findAll() {
     `SELECT lancamentos.*, categoria.nome AS categoria_nome, pessoas.nome AS pessoa_nome  
     FROM lancamentos  
     JOIN pessoas ON lancamentos.pessoaId = pessoas.id
-    JOIN categoria ON lancamentos.categoriaId = categoria.id;`,
+    JOIN categoria ON lancamentos.categoriaId = categoria.id
+    ORDER BY lancamentos.dataPagamento DESC;`,
     { type: QueryTypes.SELECT }
   );
   return lancamentos;
@@ -17,6 +18,19 @@ function findAll() {
   // return lancamentoRepository.findAll<ILancamentoModel>({
   //   include: Categoria,
   // });
+}
+
+function populaGrafico(ano: number) {
+  const dadosGrafico = sequelize.query(
+    `SELECT MONTH(dataPagamento) as Mes, SUM(valor) as Soma, tipo as Tipo
+    FROM lancamentos
+    WHERE YEAR(dataPagamento) = '${ano}'
+    GROUP BY  MONTH(dataPagamento), tipo
+    ORDER BY MONTH(dataPagamento);`,
+    { type: QueryTypes.SELECT }
+  );
+
+  return dadosGrafico;
 }
 
 function findById(id: number) {
@@ -54,4 +68,4 @@ async function set(id: number, lancamento: ILancamento) {
   return originalLancamento;
 }
 
-export default { findAll, add, deleteById, findById, set };
+export default { findAll, add, deleteById, findById, set, populaGrafico };

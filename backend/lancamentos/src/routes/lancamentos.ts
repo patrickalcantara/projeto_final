@@ -69,4 +69,10 @@ router.delete(
   categoriasController.deleteCategoria
 );
 
+router.get(
+  "/graficos/:ano",
+  middlewareCommons.validateAuth,
+  lancamentosController.populaGrafico
+);
+
 export default router;

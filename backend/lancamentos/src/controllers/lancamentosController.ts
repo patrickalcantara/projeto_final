@@ -47,9 +47,56 @@ async function updateLancamento(req: Request, res: Response, next: any) {
   }
 }
 
+async function populaGrafico(req: Request, res: Response, next: any) {
+  const ano = parseInt(req.params.ano);
+  if (!ano) return res.status(400).end();
+  const dadosGrafico: Array<any> = await repository.populaGrafico(ano);
+
+  let dadosGraficoPronto: Array<any> = [];
+
+  dadosGrafico.forEach((value) => {
+    const indice = dadosGraficoPronto.findIndex(
+      (dado) => dado.Mes === value.Mes
+    );
+    if (indice >= 0) {
+      if (value.Tipo === 100) {
+        dadosGraficoPronto[indice].Receitas = value.Soma;
+      } else {
+        dadosGraficoPronto[indice].Despesas = value.Soma;
+      }
+    } else {
+      if (value.Tipo === 100)
+        dadosGraficoPronto.push({
+          Mes: value.Mes,
+          Receitas: value.Soma,
+          Despesas: "",
+        });
+      else
+        dadosGraficoPronto.push({
+          Mes: value.Mes,
+          Receitas: "",
+          Despesas: value.Soma,
+        });
+    }
+  });
+
+  dadosGraficoPronto = dadosGraficoPronto.map((valor) => {
+    const formatter = new Intl.DateTimeFormat("pt-BR", { month: "long" });
+
+    valor.Mes = formatter
+      .format(new Date().setMonth(valor.Mes - 1))
+      .toUpperCase();
+
+    return valor;
+  });
+
+  return res.json(dadosGraficoPronto);
+}
+
 export default {
   getLancamentos,
   getLancamento,
   addLancamento,
   updateLancamento,
+  populaGrafico,
 };

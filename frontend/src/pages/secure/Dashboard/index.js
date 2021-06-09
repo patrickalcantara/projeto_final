@@ -6,6 +6,8 @@ import Header from "../../../shared/Header/index";
 import Footer from "../../../shared/Footer";
 import { PageContentDashboard } from "../../../shared/styles/index";
 
+import LancametosService from "../../../services/lancamentos";
+
 import {
   LineChart,
   Line,
@@ -16,6 +18,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import moment from "moment";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -26,45 +29,11 @@ class Dashboard extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const service = new LancametosService();
+    const result = await service.getGrafico(moment().utc().year().toString());
     this.setState({
-      data: [
-        {
-          name: "Janeiro",
-          Entradas: 4000,
-          Saidas: 2400,
-        },
-        {
-          name: "Fevereiro",
-          Entradas: 3000,
-          Saidas: 1398,
-        },
-        {
-          name: "Março",
-          Entradas: 2000,
-          Saidas: 9800,
-        },
-        {
-          name: "Abril",
-          Entradas: 2780,
-          Saidas: 3908,
-        },
-        {
-          name: "Maio",
-          Entradas: 1890,
-          Saidas: 4800,
-        },
-        {
-          name: "Junho",
-          Entradas: 2390,
-          Saidas: 3800,
-        },
-        {
-          name: "Julho",
-          Entradas: 3490,
-          Saidas: 4300,
-        },
-      ],
+      data: result,
     });
   }
 
@@ -93,13 +62,13 @@ class Dashboard extends React.Component {
                     margin={{ top: 20, right: 40, left: 40, bottom: 20 }}
                     style={{ margin: "auto" }}
                   >
-                    <XAxis dataKey="name" />
+                    <XAxis dataKey="Mes" />
                     <YAxis tickFormatter={(value) => formatter.format(value)} />
                     <CartesianGrid stroke="#ccc" strokeDasharray="2 2" />
                     <Tooltip formatter={(value) => formatter.format(value)} />
                     <Legend style={{ top: 5 }} />
-                    <Line type="monotone" dataKey="Saidas" stroke="#FFA62B" />
-                    <Line type="monotone" dataKey="Entradas" stroke="#16697A" />
+                    <Line type="monotone" dataKey="Receitas" stroke="#16697A" />
+                    <Line type="monotone" dataKey="Despesas" stroke="#FFA62B" />
                   </LineChart>
                 </ResponsiveContainer>
               </Col>

@@ -44,4 +44,11 @@ async function set(id: number, categoria: ICategoria) {
   return originalCategoria;
 }
 
-export default { findAll, add, deleteById, findById, set, softDeleteById };
+export default {
+  findAll,
+  add,
+  deleteById,
+  findById,
+  set,
+  softDeleteById,
+};
