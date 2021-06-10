@@ -21,7 +21,6 @@ import CategoriasEditPage from "./../pages/secure/Categorias/CategoriasEdit/inde
 import LancamentosListPage from "./../pages/secure/Lancamentos/LancamentosList/index";
 import LancamentosAddPage from "./../pages/secure/Lancamentos/LancamentosAdd/index";
 import LancamentosEditPage from "./../pages/secure/Lancamentos/LancamentosEdit/index";
-import LancamentosDetailsPage from "./../pages/secure/Lancamentos/LancamentosDetails/index";
 
 import RoutePrivate from "./route-wrapper";
 
@@ -78,11 +77,6 @@ export default function Routes() {
           exact
           path="/lancamentos/edit/:lancamentoId"
           component={LancamentosEditPage}
-        />
-        <RoutePrivate
-          exact
-          path="/lancamentos/details/:lancamentoId"
-          component={LancamentosDetailsPage}
         />
 
         <Route exact path="/Login" component={Login} />
