@@ -1,16 +1,15 @@
-# Projeto final para a conclusão da Especialização Fullstack do IGTI
+# Projeto de um sistema de controle financeiro baseado em Microsserviços.
 
-A ideia foi criar micro serviços para um sistema de controle financeiro
+### Projeto final para a conclusão da Especialização Fullstack do IGTI
 
-* Stacks usadas no backend:
+### Stacks usadas no projeto:
 #
 
-#### Node.js
-#### Typescript
-#### Express.js
-#### Sequelize
-#### MySQL
+* Node.js
+* Typescript
+* Express.js
+* Sequelize
+* MySQL
+* React
+* Bootstrap
 
-* Stacks usadas no frontend:
-#### React
-#### Bootstrap
