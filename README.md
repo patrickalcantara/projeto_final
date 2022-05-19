@@ -13,3 +13,6 @@
 * React
 * Bootstrap
 
+#
+#### Também foram criados testes unitários automatizados utilizando a ferramenta Jest.
+
